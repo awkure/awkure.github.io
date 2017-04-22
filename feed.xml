@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>adam</title>
+    <description></description>
+    <link>https://awkure.github.io</link>
+    <atom:link href="https://awkure.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>β phenylethylamine </title>
+        <description>If you wanna go out, you gotta take her out</description>
+        <pubDate>Wed, 19 Apr 2017 00:00:00 +0300</pubDate>
+        <link>https://awkure.github.io/posts/%CE%B2-phenylethylamine</link>
+        <guid isPermaLink="true">https://awkure.github.io/posts/%CE%B2-phenylethylamine</guid>
+      </item>
+    
+      <item>
+        <title>The universe information capacity</title>
+        <description>We are an impossibility in an impossible universe (Ray Bradbury)</description>
+        <pubDate>Mon, 10 Apr 2017 00:00:00 +0300</pubDate>
+        <link>https://awkure.github.io/posts/the-universe-information-capacity</link>
+        <guid isPermaLink="true">https://awkure.github.io/posts/the-universe-information-capacity</guid>
+      </item>
+    
+      <item>
+        <title>Arizona May Day Mystery</title>
+        <description>40 years lasting alternative reality game</description>
+        <pubDate>Mon, 03 Apr 2017 00:00:00 +0300</pubDate>
+        <link>https://awkure.github.io/posts/mayday-mystery</link>
+        <guid isPermaLink="true">https://awkure.github.io/posts/mayday-mystery</guid>
+      </item>
+    
+      <item>
+        <title>Invariability</title>
+        <description>As the first post in my blog I'd like to share a narration.</description>
+        <pubDate>Sun, 02 Apr 2017 00:00:00 +0300</pubDate>
+        <link>https://awkure.github.io/posts/invariability</link>
+        <guid isPermaLink="true">https://awkure.github.io/posts/invariability</guid>
+      </item>
+    
+  </channel>
+</rss>
