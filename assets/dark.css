@@ -68,7 +68,8 @@ figure {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   /* 1 */
   height: 0;
   /* 1 */
@@ -114,7 +115,8 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
   /* 2 */ }
 
 /**
@@ -291,7 +293,8 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   color: inherit;
   /* 2 */
@@ -326,7 +329,8 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */ }
@@ -430,6 +434,7 @@ template {
 .fluidbox__overlay {
   background-color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
+  cursor: -webkit-zoom-out;
   cursor: zoom-out;
   opacity: 0;
   pointer-events: none;
@@ -473,6 +478,7 @@ template {
   transition: opacity 0s 0s, transform 0.5s 0s, -webkit-transform 0.5s 0s; }
   .fluidbox--opened .fluidbox__ghost {
     cursor: pointer;
+    cursor: -webkit-zoom-out;
     cursor: zoom-out; }
   .fluidbox--closed .fluidbox__ghost {
     -webkit-transition: opacity 0s 0.5s, -webkit-transform 0.5s 0s;
@@ -523,7 +529,8 @@ template {
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 html {
   font-size: 16px; }
@@ -668,73 +675,73 @@ img {
   text-align: left;
   vertical-align: top; }
   .grid-cell.with-1col {
-    width: 5.55556%; }
+    width: 5.5555555556%; }
   .grid-cell.with-2col {
-    width: 11.11111%; }
+    width: 11.1111111111%; }
   .grid-cell.with-3col {
-    width: 16.66667%; }
+    width: 16.6666666667%; }
   .grid-cell.with-4col {
-    width: 22.22222%; }
+    width: 22.2222222222%; }
   .grid-cell.with-5col {
-    width: 27.77778%; }
+    width: 27.7777777778%; }
   .grid-cell.with-6col {
-    width: 33.33333%; }
+    width: 33.3333333333%; }
   .grid-cell.with-7col {
-    width: 38.88889%; }
+    width: 38.8888888889%; }
   .grid-cell.with-8col {
-    width: 44.44444%; }
+    width: 44.4444444444%; }
   .grid-cell.with-9col {
     width: 50%; }
   .grid-cell.with-10col {
-    width: 55.55556%; }
+    width: 55.5555555556%; }
   .grid-cell.with-11col {
-    width: 61.11111%; }
+    width: 61.1111111111%; }
   .grid-cell.with-12col {
-    width: 66.66667%; }
+    width: 66.6666666667%; }
   .grid-cell.with-13col {
-    width: 72.22222%; }
+    width: 72.2222222222%; }
   .grid-cell.with-14col {
-    width: 77.77778%; }
+    width: 77.7777777778%; }
   .grid-cell.with-15col {
-    width: 83.33333%; }
+    width: 83.3333333333%; }
   .grid-cell.with-16col {
-    width: 88.88889%; }
+    width: 88.8888888889%; }
   .grid-cell.with-17col {
-    width: 94.44444%; }
+    width: 94.4444444444%; }
   .grid-cell.with-1off {
-    margin-left: 5.55556%; }
+    margin-left: 5.5555555556%; }
   .grid-cell.with-2off {
-    margin-left: 11.11111%; }
+    margin-left: 11.1111111111%; }
   .grid-cell.with-3off {
-    margin-left: 16.66667%; }
+    margin-left: 16.6666666667%; }
   .grid-cell.with-4off {
-    margin-left: 22.22222%; }
+    margin-left: 22.2222222222%; }
   .grid-cell.with-5off {
-    margin-left: 27.77778%; }
+    margin-left: 27.7777777778%; }
   .grid-cell.with-6off {
-    margin-left: 33.33333%; }
+    margin-left: 33.3333333333%; }
   .grid-cell.with-7off {
-    margin-left: 38.88889%; }
+    margin-left: 38.8888888889%; }
   .grid-cell.with-8off {
-    margin-left: 44.44444%; }
+    margin-left: 44.4444444444%; }
   .grid-cell.with-9off {
     margin-left: 50%; }
   .grid-cell.with-10off {
-    margin-left: 55.55556%; }
+    margin-left: 55.5555555556%; }
   .grid-cell.with-11off {
-    margin-left: 61.11111%; }
+    margin-left: 61.1111111111%; }
   .grid-cell.with-12off {
-    margin-left: 66.66667%; }
+    margin-left: 66.6666666667%; }
   .grid-cell.with-13off {
-    margin-left: 72.22222%; }
+    margin-left: 72.2222222222%; }
   .grid-cell.with-14off {
-    margin-left: 77.77778%; }
+    margin-left: 77.7777777778%; }
   .grid-cell.with-15off {
-    margin-left: 83.33333%; }
+    margin-left: 83.3333333333%; }
   .grid-cell.with-16off {
-    margin-left: 88.88889%; }
+    margin-left: 88.8888888889%; }
   .grid-cell.with-17off {
-    margin-left: 94.44444%; }
+    margin-left: 94.4444444444%; }
   .grid-cell.is-centered {
     text-align: center; }
   .grid-cell.is-right {

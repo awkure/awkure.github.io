@@ -1,30 +1,22 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>soon</title>
-        <meta http-equiv="cache-control" content="no-cache">
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <meta name="robots" content="nofollow">
-        <meta name="author" content="adam">
-        <style>
-            * { 
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #CE93D8;
-            }
-            video {
-                object-fit: cover;
-                width: 100vw;
-                height: 100vh;
-                -webkit-filter: hue-rotate(60deg);
-                filter: hue-rotate(60deg);
-            }
-        </style>
-    </head>
-    <body>
-        <video preload autoplay loop>
-            <source src="assets/video.webm">
-        </video>
-    </body>
+<html lang="en">
+
+	<head>
+		<title>Purgatory | Home</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name=robots" content="noindex,nofollow">
+        <style> * { margin: 0; padding: 0; background: #000; } </style>
+	</head>
+
+	<body>
+		<div id="container"></div>
+		<audio id="song">
+			<source src="index/sounds/utopia.ogg" type="audio/ogg">
+		</audio>
+
+        <script src="index/js/three.min.js"></script>
+		<script src='index/js/scene.js' async></script>
+	</body>
+
 </html>
