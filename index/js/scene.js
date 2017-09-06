@@ -58,7 +58,7 @@ if (!(Detector.webgl || Detector.webgl2)) {
 
     const videoConfigs = [{
             "label": "filament",
-            "vp9": "index/video/love.webm",
+            "vp9": "index/video/no_love",
     }];
 
     let videos        = [];
@@ -532,11 +532,11 @@ if (!(Detector.webgl || Detector.webgl2)) {
 
         setupAreaLight(rightLight, -1, 1, -1);
 
-       // rightLight.width = w/2*10;
-       // addAreaLightMesh( rightLight );
+       rightLight.width = w/2;
+       addAreaLightMesh( rightLight );
 
-        const numRings     = 10;
-        const numParticles = 1500;
+        const numRings     = 7;
+        const numParticles = 1300;
 
         for (let i = 0; i < numRings; i++) {
 
@@ -698,9 +698,7 @@ if (!(Detector.webgl || Detector.webgl2)) {
             const x = rsq * Math.cos(fi);
             const z = rsq * Math.sin(fi);
 
-            //const y = (Math.random() * n - n2) * 0.25;
-            const y = (Math.random() * n - n2) * 2;
-
+            const y = (Math.random() * n - n2) * 0.25;
 
             const ax = x + Math.random() * d - d2;
             const ay = y + Math.random() * d - d2;
