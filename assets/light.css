@@ -947,7 +947,7 @@ img {
   .article-content img,
   .article-content blockquote {
     display: block;
-    margin-bottom: 30px; }
+    margin: auto auto 30px auto; }
   .article-content h2,
   .article-content h3,
   .article-content h4 {
