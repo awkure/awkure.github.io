@@ -9,19 +9,19 @@
 
   <meta property="og:title" content="Basic implementation of recursion patterns or why my parents insisted on abortion*">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://awkure.github.io/posts/basic-implementation-of-recursion-patterns">
+  <meta property="og:url" content="https://awkure.github.io/blog/posts/basic-implementation-of-recursion-patterns">
   <meta property="og:description" content="[Currently a draft] *">
   <meta property="og:site_name" content="adam">
-  <meta property="og:image" content="https://awkure.github.io/assets/og-image.jpg">
+  <meta property="og:image" content="https://awkure.github.io/blog/assets/og-image.jpg">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:url" content="https://awkure.github.io/posts/basic-implementation-of-recursion-patterns">
+  <meta name="twitter:url" content="https://awkure.github.io/blog/posts/basic-implementation-of-recursion-patterns">
   <meta name="twitter:title" content="Basic implementation of recursion patterns or why my parents insisted on abortion*">
   <meta name="twitter:description" content="[Currently a draft] *">
-  <meta name="twitter:image" content="https://awkure.github.io/assets/og-image.jpg">
+  <meta name="twitter:image" content="https://awkure.github.io/blog/assets/og-image.jpg">
 
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link href="https://awkure.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="adam Last 10 blog posts" />
+  <link href="https://awkure.github.io/blog/feed.xml" type="application/rss+xml" rel="alternate" title="adam Last 10 blog posts" />
 
   
     <link type="text/css" rel="stylesheet" href="/assets/fonts.css">
@@ -55,7 +55,7 @@
     
     
       <li>
-        <a href="https://telegram.me/awkure" target="_blank" title="Telegram">
+        <a href="https://telegram.me/systemspace" target="_blank" title="Telegram">
             <p>.tg</p>
         </a>
       </li>
@@ -128,23 +128,33 @@
 
 <p>It’s obvoius that modern approach in computer programming mostly bounds itself inside the frame of imperative paradigm. IT industry spreads as fast as Katrina in August 31, 2005 and consequently produces interest in lower stratum, who wants to be along with mainstream. Frankly IT is full of guerillas, whos projects written in python/javascript despite the probabilistic vulnerabilities based on lack of essential features such as static strong type system and also not caring about their code expressiveness while poking standarts of XX century.
 This article is about functional paradigm, especially recursion patterns and their inheritance in the wild which I supposed to give some examples of their practical use. 
-Though recursion schemes bring the enormous abstractive power of category theory to bear on the subject of traversing data structures. Recursion is an essential part of functional programming like <code class="highlighter-rouge">for</code> and <code class="highlighter-rouge">while</code> loops in imperative paradigm. So, generalization of recursion patterns brings some clarity to what this paradigm is about.</p>
+Though recursion schemes bring the enormous abstractive power of category theory to bear on the subject of traversing data structures. Recursion is an essential part of functional programming like <code class="highlighter-rouge">for</code> and <code class="highlighter-rouge">while</code> loops in imperative paradigm. So, generalization of recursion patterns brings some clarity to what this paradigm is about. I’ll also use some Meijer’s notation to simplify things a bit.</p>
 
 <p>Describtion <em>[Currently a draft]</em> means that this’s mere a draft and all code is being tested and revisioned. For now suppose that it’s written in a pseudo-Haskell notation.</p>
 
 <h2 id="lists">Lists</h2>
 <hr />
+<p>At first it’s necessary to define a category. Haskell type system depends on <em>Hask</em> which is cause célèbre by itself and a topic for another article.</p>
 
-<p>At first it’s necessary to define <code class="highlighter-rouge">Stream/Cons</code>-like data structure to exemplify on.</p>
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">type</span> <span class="kt">Hask</span> <span class="o">=</span> <span class="p">(</span><span class="o">-&gt;</span><span class="p">)</span>
+
+<span class="kr">instance</span> <span class="kt">Category</span> <span class="kt">Hask</span> <span class="kr">where</span> 
+    <span class="n">id</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="p">(</span><span class="n">f</span> <span class="o">.</span> <span class="n">g</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f</span> <span class="p">(</span><span class="n">g</span> <span class="n">a</span><span class="p">)</span></code></pre></figure>
+
+<p>And then a <code class="highlighter-rouge">Stream/Cons</code>-like data structure to exemplify on.</p>
 
 <p><a href="/assets/images/Basic_implementation_of_recursion_patterns/list.png" class="fluidbox-trigger">
   <img src="/assets/images/Basic_implementation_of_recursion_patterns/list.png" alt="" />
 </a></p>
 
-<p>And it’s haskell representation</p>
+<p>And its haskell representation</p>
 
 <figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">data</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="o">=</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="p">(</span><span class="kt">Stream</span> <span class="n">a</span><span class="p">)</span> <span class="kr">deriving</span> <span class="kt">Functor</span>
-<span class="kr">data</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">=</span> <span class="kt">Nil</span> <span class="o">|</span> <span class="kt">Cons</span> <span class="n">a</span> <span class="p">(</span><span class="kt">List</span> <span class="n">a</span><span class="p">)</span> <span class="kr">deriving</span> <span class="kt">Functor</span> 
+
+<span class="kr">data</span> <span class="kt">List</span> <span class="n">a</span> <span class="kr">where</span> 
+    <span class="kt">Nil</span> <span class="o">::</span> <span class="kt">List</span> <span class="n">a</span> 
+    <span class="kt">Cons</span> <span class="o">::</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">List</span> <span class="n">a</span>
 
 <span class="kr">instance</span> <span class="kt">Semigroup</span> <span class="kt">List</span> <span class="kr">where</span> 
     <span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">List</span> <span class="n">a</span>
@@ -173,15 +183,14 @@ Though recursion schemes bring the enormous abstractive power of category theory
 <span class="kr">type</span> <span class="kt">CVCoalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="kt">Free</span> <span class="n">f</span> <span class="n">a</span><span class="p">)</span>
 
 <span class="c1">-- prepro/postpro</span>
-<span class="kr">type</span> <span class="kt">NAlgebra</span>    <span class="n">f</span> <span class="n">a</span> <span class="o">=</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">f</span><span class="o">.</span> <span class="p">(</span><span class="n">forall</span> <span class="n">b</span><span class="o">.</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span>
-<span class="kr">type</span> <span class="kt">NCoalgebra</span>  <span class="n">f</span> <span class="n">a</span> <span class="o">=</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">f</span><span class="o">.</span> <span class="p">(</span><span class="n">forall</span> <span class="n">b</span><span class="o">.</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">a</span></code></pre></figure>
+<span class="kr">type</span> <span class="kt">NAlgebra</span>    <span class="n">f</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">forall</span> <span class="n">b</span><span class="o">.</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span>
+<span class="kr">type</span> <span class="kt">NCoalgebra</span>  <span class="n">f</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">forall</span> <span class="n">b</span><span class="o">.</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">f</span> <span class="n">a</span></code></pre></figure>
 
 <p>To provide proper examples here’s defined a natural number representation known as Peano’s representation which is almost how numbers defined in terms of lambda calculus</p>
 
 <figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="kr">data</span> <span class="kt">Nat</span> <span class="o">=</span> <span class="kt">Zero</span> <span class="o">|</span> <span class="kt">Succ</span> <span class="kt">Nat</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Functor</span><span class="p">,</span> <span class="kt">Traversal</span><span class="p">)</span>
 
-<span class="c1">-- TODO: pointfree</span>
-<span class="n">expand</span> <span class="o">::</span> <span class="kt">Int</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="kt">Nat</span>
+<span class="n">expand</span> <span class="o">::</span> <span class="n">c</span> <span class="kt">Int</span> <span class="p">(</span><span class="kt">Mu</span> <span class="kt">Nat</span><span class="p">)</span>
 <span class="n">expand</span> <span class="mi">0</span> <span class="o">=</span> <span class="kt">Mu</span> <span class="kt">Zero</span>
 <span class="n">expand</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Mu</span> <span class="o">.</span> <span class="kt">Succ</span> <span class="o">.</span> <span class="n">expand</span><span class="p">)</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -193,7 +202,7 @@ Though recursion schemes bring the enormous abstractive power of category theory
 
 <h2 id="catamorphism">Catamorphism</h2>
 <hr />
-<p>Catamorphism is just a basic fold with respect to generalization which is applicable to any functor, or being more precise it deconstructs a data structure with an F-algebra for its underlying functor.<br />
+<p>Catamorphism is a basic fold with respect to generalization which is applicable to any functor, or being more precise it deconstructs a data structure with an F-algebra for its underlying functor.<br />
 To define catamorphism suppose that we have some <code class="highlighter-rouge">a ∈ A</code> then it’s catamorphism <code class="highlighter-rouge">f ∈ A* →   B</code>  is a function such as:</p>
 
 <p><a href="/assets/images/Basic_implementation_of_recursion_patterns/2.png" class="fluidbox-trigger">
@@ -202,7 +211,7 @@ To define catamorphism suppose that we have some <code class="highlighter-rouge"
 
 <p>Represented in terms of Hask</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">f</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">b</span><span class="o">.</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span>
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">f</span> <span class="o">::</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span>
 <span class="n">f</span> <span class="p">(</span><span class="kt">Cons</span> <span class="n">a</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;&gt;</span> <span class="p">(</span><span class="n">f</span> <span class="n">b</span><span class="p">)</span> 
 <span class="n">f</span> <span class="kt">Nil</span> <span class="o">=</span> <span class="kt">Nil</span></code></pre></figure>
 
@@ -220,7 +229,7 @@ To define catamorphism suppose that we have some <code class="highlighter-rouge"
 
 <p>You can properly define catamorphism</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">cata</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">f</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">cata</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span> 
 <span class="n">cata</span> <span class="n">f</span> <span class="o">=</span> <span class="n">out</span> <span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">fmap</span> <span class="o">.</span> <span class="n">cata</span><span class="p">)</span> <span class="n">f</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span></code></pre></figure>
 
 <p>There’re several laws that catamorphisms obey such as <em>fusion law</em>, <em>reflection law</em>, <em>composition law</em> and <em>cancelation law</em> which are especially important for program calculation:</p>
@@ -236,7 +245,7 @@ To define catamorphism suppose that we have some <code class="highlighter-rouge"
 
 <p>And here’s a basic example of using catamorphism in the wild:</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">length</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Int</span>  
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">length</span> <span class="o">::</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Int</span>  
 <span class="n">length</span> <span class="o">=</span> <span class="n">cata</span> <span class="o">$</span> <span class="nf">\</span><span class="kr">case</span>
     <span class="kt">Nil</span>         <span class="o">-&gt;</span> <span class="mi">0</span> 
     <span class="p">(</span><span class="kt">Cons</span> <span class="n">a</span> <span class="n">as</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">as</span>
@@ -249,7 +258,7 @@ To define catamorphism suppose that we have some <code class="highlighter-rouge"
 <h2 id="anamorphism">Anamorphism</h2>
 <hr />
 
-<p>Anamorphism is just a basic unfold with respect to generalization that constructs corecursive codata using specialized F-algebra and consecuently dual to catamorphism. 
+<p>Anamorphism is a basic unfold with respect to generalization that constructs corecursive codata using specialized F-algebra and consecuently dual to catamorphism. 
 To define anamorphism suppose that we have function <code class="highlighter-rouge">f ∈ B → A || B</code> and a predicate <code class="highlighter-rouge">p ∈ B → bool</code>, then anamorhism <code class="highlighter-rouge">g ∈ B → A*</code> can be defined as:</p>
 
 <p><a href="/assets/images/Basic_implementation_of_recursion_patterns/9.png" class="fluidbox-trigger">
@@ -270,7 +279,7 @@ To define anamorphism suppose that we have function <code class="highlighter-rou
 
 <p>And in Hask</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">ana</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">f</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">ana</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> 
 <span class="n">ana</span> <span class="n">f</span> <span class="o">=</span> <span class="kt">Mu</span> <span class="o">&lt;&lt;&lt;</span> <span class="p">(</span><span class="n">fmap</span> <span class="o">.</span> <span class="n">ana</span><span class="p">)</span> <span class="n">f</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">f</span></code></pre></figure>
 
 <p>With some straightforward examples of usabililty of anamorphism provided</p>
@@ -279,7 +288,7 @@ To define anamorphism suppose that we have function <code class="highlighter-rou
     <span class="kr">where</span> <span class="n">phi</span> <span class="p">(</span><span class="n">as</span><span class="p">,</span> <span class="n">bs</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">as</span> <span class="o">==</span> <span class="kt">Nil</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">bs</span> <span class="o">==</span> <span class="kt">Nil</span><span class="p">)</span>
           <span class="n">eps</span> <span class="p">((</span><span class="kt">Cons</span> <span class="n">a</span> <span class="n">as</span><span class="p">),</span> <span class="p">(</span><span class="kt">Cons</span> <span class="n">b</span> <span class="n">bs</span><span class="p">))</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span> <span class="o">&lt;&gt;</span> <span class="n">b</span><span class="p">),</span> <span class="p">(</span><span class="n">as</span> <span class="o">&lt;&gt;</span> <span class="n">bs</span><span class="p">))</span>
 
-<span class="n">iterate</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span> <span class="n">a</span>
+<span class="n">iterate</span> <span class="o">::</span> <span class="p">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Stream</span> <span class="n">a</span>
 <span class="n">iterate</span> <span class="n">f</span> <span class="o">=</span> <span class="n">ana</span> <span class="o">$</span> <span class="nf">\</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Stream</span> <span class="n">a</span> <span class="p">(</span><span class="n">f</span> <span class="n">a</span><span class="p">)</span></code></pre></figure>
 
 <h2 id="hylomorphism">Hylomorphism</h2>
@@ -299,7 +308,7 @@ To define anamorphism suppose that we have function <code class="highlighter-rou
 
 <p>So, the basic definition of hylomorphism in terms of Hask is</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">hylo</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">b</span> <span class="n">f</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span>
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">hylo</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span>
 <span class="n">hylo</span> <span class="n">f</span> <span class="n">g</span> <span class="o">=</span> <span class="n">f</span> <span class="o">.</span> <span class="p">(</span><span class="n">fmap</span> <span class="o">.:</span> <span class="n">hylo</span><span class="p">)</span> <span class="n">f</span> <span class="n">g</span> <span class="o">.</span> <span class="n">g</span> </code></pre></figure>
 
 <p>Due the total fusion theorem in hylomorphism can be defined as</p>
@@ -308,7 +317,7 @@ To define anamorphism suppose that we have function <code class="highlighter-rou
   <img src="/assets/images/Basic_implementation_of_recursion_patterns/11.png" alt="" />
 </a></p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">hylo</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">b</span> <span class="n">f</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">hylo</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span> 
 <span class="n">hylo</span> <span class="n">h</span> <span class="n">g</span> <span class="o">=</span> <span class="n">cata</span> <span class="n">h</span> <span class="o">.</span> <span class="n">ana</span> <span class="n">g</span></code></pre></figure>
 
 <p>And it’s pretty obvious to define catamorphism and anamorphism in terms of hylomorphism</p>
@@ -319,9 +328,7 @@ To define anamorphism suppose that we have function <code class="highlighter-rou
 <h2 id="paramorphism">Paramorphism</h2>
 <hr />
 
-<p>Paramorphism is a superset onto catamorphism which allows to tear down the structure besides (para) with its structure at the same level of recursion. You can think of paramorphism as an extension of the concept of catamorphism.</p>
-
-<p>The definition is pretty straightforward:</p>
+<p>Paramorphism is a superset onto catamorphism which allows to tear down the structure besides (para) with its structure at the same level of recursion. You can think of paramorphism as an extension of the concept of catamorphism. For some arbitrary <code class="highlighter-rouge">a ∈ A*</code> and <code class="highlighter-rouge">as ∈ A*</code> , <code class="highlighter-rouge">⨁ ∈ B || A → A</code> the definition of paramorfism can be described in a pretty straightforward way:</p>
 
 <p><a href="/assets/images/Basic_implementation_of_recursion_patterns/6.png" class="fluidbox-trigger">
   <img src="/assets/images/Basic_implementation_of_recursion_patterns/6.png" alt="" />
@@ -329,7 +336,7 @@ To define anamorphism suppose that we have function <code class="highlighter-rou
 
 <p>In haskell <code class="highlighter-rouge">Control.Arrow</code> module there’s also a <code class="highlighter-rouge">&amp;&amp;&amp;</code> combinator which takes two function <code class="highlighter-rouge">f</code> and <code class="highlighter-rouge">g</code> and returns another function when given a value of <code class="highlighter-rouge">a</code> returns a tuple <code class="highlighter-rouge">(f a, g a)</code>. Using this combinator allows you to define <code class="highlighter-rouge">para</code> function in a pretty elegant way:</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">para</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">RAlgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">para</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">RAlgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span> 
 <span class="n">para</span> <span class="n">f</span> <span class="o">=</span> <span class="n">out</span> <span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">fmap</span> <span class="o">.</span> <span class="n">id</span> <span class="o">&amp;&amp;&amp;</span> <span class="n">para</span><span class="p">)</span> <span class="n">f</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span></code></pre></figure>
 
 <p>In the wild</p>
@@ -352,7 +359,7 @@ The point is that it allows to separate the flow of computation during the recur
 
 <p>Similarly there’s <code class="highlighter-rouge">|||</code> combinator which is dual to <code class="highlighter-rouge">&amp;&amp;&amp;</code> and uses one of the functions provided to it.</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">apo</span> <span class="n">f</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">f</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">RCoalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">apo</span> <span class="n">f</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">RCoalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> 
 <span class="n">apo</span> <span class="n">f</span> <span class="o">=</span> <span class="kt">Mu</span> <span class="o">&lt;&lt;&lt;</span> <span class="p">(</span><span class="n">fmap</span> <span class="o">.</span> <span class="n">id</span> <span class="o">|||</span> <span class="n">apo</span><span class="p">)</span> <span class="n">f</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">f</span></code></pre></figure>
 
 <h2 id="zygomorphism">Zygomorphism</h2>
@@ -363,7 +370,7 @@ Given a specific catamorphism <code class="highlighter-rouge">h ∈ A* → C</co
 
 <p>And in haskell</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">zygo</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">f</span> <span class="n">a</span> <span class="n">b</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span>  <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">f</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span>
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">zygo</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Algebra</span>  <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">f</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span>
 <span class="n">zygo</span> <span class="n">f</span> <span class="n">g</span> <span class="o">=</span> <span class="n">fst</span> <span class="o">.</span> <span class="n">cata</span> <span class="p">(</span><span class="n">g</span> <span class="o">&amp;&amp;&amp;</span> <span class="n">f</span> <span class="o">.</span> <span class="n">fmap</span> <span class="n">snd</span><span class="p">)</span></code></pre></figure>
 
 <h2 id="histomorphism">Histomorphism</h2>
@@ -371,7 +378,7 @@ Given a specific catamorphism <code class="highlighter-rouge">h ∈ A* → C</co
 
 <p>Histomorphism is a shape-changing fold which preserves the history of the values due the <em>course-of-value</em> recursion model. Basically it allows to access <em>all</em> previous values, not just the most recent one.</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">histo</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">CVAlgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span>
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">histo</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">CVAlgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">a</span>
 <span class="n">histo</span> <span class="n">f</span> <span class="o">=</span> <span class="n">out</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">fmap</span> <span class="n">h</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="kr">where</span> 
     <span class="n">h</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">Cofree</span><span class="p">(</span><span class="kt">Mu</span><span class="p">(</span><span class="kt">CoBindF</span> <span class="p">(</span><span class="n">histo</span> <span class="n">f</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">fmap</span> <span class="n">h</span> <span class="p">(</span><span class="n">out</span> <span class="n">t</span><span class="p">))))</span></code></pre></figure>
 
@@ -387,7 +394,7 @@ Given a specific catamorphism <code class="highlighter-rouge">h ∈ A* → C</co
 <p>Here begins time travelling and that’s the point when you should stop reading this post and caring about functional programming at all. 
 It constructs a F-algebraic structure stepwise, but the coalgebra can return multiple layers of a-valued substructures at once.</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">futu</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">f</span> <span class="n">a</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">CVCoalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">futu</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">CVCoalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Mu</span> <span class="n">f</span> 
 <span class="n">futu</span> <span class="n">f</span> <span class="o">=</span> <span class="kt">Mu</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">fmap</span> <span class="n">h</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">f</span> 
     <span class="kr">where</span> <span class="n">h</span> <span class="p">(</span><span class="kt">Free</span><span class="p">(</span><span class="kt">Mu</span><span class="p">(</span><span class="kt">ReturnF</span> <span class="n">a</span><span class="p">)))</span> <span class="o">=</span> <span class="n">futu</span> <span class="n">f</span> <span class="n">a</span>
           <span class="n">h</span> <span class="p">(</span><span class="kt">Free</span><span class="p">(</span><span class="kt">Mu</span><span class="p">(</span><span class="kt">BindF</span>   <span class="n">a</span><span class="p">)))</span> <span class="o">=</span> <span class="kt">Mu</span> <span class="p">(</span><span class="n">fmap</span> <span class="n">h</span> <span class="n">a</span><span class="p">)</span></code></pre></figure>
@@ -403,7 +410,7 @@ It constructs a F-algebraic structure stepwise, but the coalgebra can return mul
 
 <p>Example of finding a factorial inside an infinite stream of generated factorial numbers which isn’t greater than n</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">fact</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span><span class="o">.</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Num</span> <span class="n">a</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">fact</span> <span class="o">::</span> <span class="p">(</span><span class="kt">Ord</span> <span class="n">a</span><span class="p">,</span> <span class="kt">Num</span> <span class="n">a</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">List</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> 
 <span class="n">fact</span> <span class="n">n</span> <span class="o">=</span> <span class="n">prepro</span> <span class="p">(</span><span class="n">pred</span> <span class="n">n</span><span class="p">)</span> <span class="n">phi</span>
     <span class="kr">where</span> <span class="n">pred</span> <span class="n">ac</span><span class="o">@</span><span class="p">(</span><span class="kt">Cons</span> <span class="n">a</span> <span class="n">as</span><span class="p">)</span> <span class="o">|</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">=</span> <span class="n">ac</span>
                               <span class="o">|</span> <span class="n">otherwise</span> <span class="o">=</span> <span class="kt">Nil</span>
@@ -436,7 +443,7 @@ It constructs a F-algebraic structure stepwise, but the coalgebra can return mul
 
 <p>A corecursive function which can be described in terms of composition between anamorphism and histomorphism. It’s very usefull when it comes to implementing dynamic-programming algorithms.</p>
 
-<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">dyna</span> <span class="o">::</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">b</span><span class="o">.</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">CVAlgebra</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span> 
+<figure class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="n">dyna</span> <span class="o">::</span> <span class="kt">Functor</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="kt">Coalgebra</span> <span class="n">f</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">CVAlgebra</span> <span class="n">f</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">b</span> 
 <span class="n">dyna</span> <span class="n">f</span> <span class="n">h</span> <span class="o">=</span> <span class="n">extract</span> <span class="o">.</span> <span class="n">hylo</span> <span class="n">f</span> <span class="p">(</span><span class="nf">\</span><span class="n">g</span> <span class="o">-&gt;</span> <span class="n">h</span> <span class="n">g</span> <span class="o">:&lt;</span> <span class="n">g</span><span class="p">)</span></code></pre></figure>
 
 <p>With an example of generating N fibonacci numbers</p>
