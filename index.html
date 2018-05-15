@@ -1,22 +1,270 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>adam | Speculation</title>
+  <meta name="description" content="Blog">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<head>
-		<title>Purgatory | Home</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <meta name="robots" content="noindex,nofollow">
-        <style> * { margin: 0; padding: 0; background: #000; } </style>
-	</head>
+  <meta property="og:title" content="Speculation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://awkure.github.io/blog/">
+  <meta property="og:description" content="Blog">
+  <meta property="og:site_name" content="adam">
+  <meta property="og:image" content="https://awkure.github.io/blog/assets/og-image.jpg">
 
-	<body>
-		<div id="container"></div>
-		<audio id="song">
-			<source src="index/sounds/utopia.ogg" type="audio/ogg">
-		</audio>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://awkure.github.io/blog/">
+  <meta name="twitter:title" content="Speculation">
+  <meta name="twitter:description" content="Blog">
+  <meta name="twitter:image" content="https://awkure.github.io/blog/assets/og-image.jpg">
 
-        <script src="index/js/three.min.js"></script>
-		<script src='index/js/scene.js' async></script>
-	</body>
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://awkure.github.io/blog/feed.xml" type="application/rss+xml" rel="alternate" title="adam Last 10 blog posts" />
 
+  
+    <link type="text/css" rel="stylesheet" href="/assets/fonts.css">
+  
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="adam">adam</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+            <p>.md</p>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/awkure" target="_blank" title="GitHub">
+            <p>.git</p>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://telegram.me/systemspace" target="_blank" title="Telegram">
+            <p>.tg</p>
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://twitter.com/chronotaraxis" target="_blank" title="Telegram">
+            <p>.tw</p>
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://blockchain.info/address/17Q7g618VFEfvk4Q2xUif24Mdc4skpsUtZ" target="_blank" title="Bitcoin">
+            <p>.bit</p>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="mailto:awkure@protonmail.ch" title="Email">
+            <p>.eml</p>
+        </a>
+      </li>
+     
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+            <p>.rss</p>
+        </a>
+      </li> 
+    
+      <li>
+        <a href="http://chronoradio.online" target="_blank" title="Chronoradio">
+            <p>.ogg</p>
+        </a>
+      </li>
+  </ul>
+</nav>
+
+        <ul class="article-list">
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/ab-omnibus-i-1" title="I — Ab Omnibus">
+        <h5>
+          I — Ab Omnibus
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>Nihil fere animo considerantes</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          February 16, 2018
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            51 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/philosophy">philosophy</a>
+          
+            <a href="/tag/physics">physics</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/on-recursion" title="On recursion">
+        <h5>
+          On recursion
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>[draft]</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          October 20, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            15 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/haskell">haskell</a>
+          
+            <a href="/tag/category-theory">category-theory</a>
+          
+            <a href="/tag/programming">programming</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/being-interested" title="Being interested">
+        <h5>
+          Being interested
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>Being cautious on the other side</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          August 8, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            19 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/privacy">privacy</a>
+          
+            <a href="/tag/deepweb">deepweb</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/the-universe-information-capacity" title="The universe information capacity">
+        <h5>
+          The universe information capacity
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>draft</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          April 10, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            10 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/universe">universe</a>
+          
+            <a href="/tag/physics">physics</a>
+          
+            <a href="/tag/qm">qm</a>
+          
+        </div>
+      </div>
+    </li>
+  
+    <li class="article-list-item reveal">
+      <a href="/posts/mayday-mystery" title="Arizona May Day Mystery">
+        <h5>
+          Arizona May Day Mystery
+          <span class="icon icon-ios-arrow-thin-right"></span>
+        </h5>
+      </a>
+      <p>40 years lasting alternative reality game</p>
+      <div class="article-list-footer">
+        <span class="article-list-date">
+          April 3, 2017
+        </span>
+        <span class="article-list-divider">-</span>
+        <span class="article-list-minutes">
+          
+          
+            5 minute read
+          
+        </span>
+        <span class="article-list-divider">-</span>
+        <div class="article-list-tags">
+          
+            <a href="/tag/arg">arg</a>
+          
+            <a href="/tag/story">story</a>
+          
+            <a href="/tag/conspiracy">conspiracy</a>
+          
+        </div>
+      </div>
+    </li>
+  
+  
+</ul>
+        <!-- WIP -->
+
+      </div>
+    </div>
+  </main>
+  
+
+
+
+<script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+</body>
 </html>
