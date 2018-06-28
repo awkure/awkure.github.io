@@ -6,17 +6,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <meta name="robots" content="noindex,nofollow">
-        <style> * { margin: 0; padding: 0; background: #000; } </style>
+        <meta name="theme-color" content="#000">
+        <meta name="msapplication-navbutton-color" content="#000">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000">
+        <style> * { margin: 0; padding: 0; background: #000; overflow: hidden }
+                #v { object-fit: cover; width: 100vw; height: 100vh; filter: contrast(150%); }</style>
 	</head>
 
 	<body>
-		<div id="container"></div>
-		<audio id="song">
-			<source src="index/sounds/utopia.ogg" type="audio/ogg">
-		</audio>
-
-        <script src="index/js/three.min.js"></script>
-		<script src='index/js/scene.js' async></script>
+        <video autoplay id="v">
+            <source src="index/video/_.mp4" type="video/mp4">
+        </video>
 	</body>
 
 </html>
