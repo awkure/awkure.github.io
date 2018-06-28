@@ -9,14 +9,17 @@
         <meta name="theme-color" content="#000">
         <meta name="msapplication-navbutton-color" content="#000">
         <meta name="apple-mobile-web-app-status-bar-style" content="#000">
-        <style> * { margin: 0; padding: 0; background: #000; overflow: hidden }
-                #v { object-fit: cover; width: 100vw; height: 100vh; filter: contrast(150%); }</style>
+        <style> * { margin: 0; padding: 0; background: #000; } </style>
 	</head>
 
 	<body>
-        <video id="v" autoplay>
-            <source src="index/video/_.mp4" type="video/mp4">
-        </video>
+		<div id="container"></div>
+		<audio id="song">
+			<source src="index/sounds/utopia.ogg" type="audio/ogg">
+		</audio>
+
+        <script src="index/js/three.min.js"></script>
+		<script src='index/js/scene.js' async></script>
 	</body>
 
 </html>
