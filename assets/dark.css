@@ -537,16 +537,16 @@ html {
 
 body {
   margin: 0 auto;
-  font-family: "GT Sectra Fine";
+  font-family: "Raleway", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.8;
   color: #d2cfcf;
   background: #121111; }
 
 p {
   margin: 0;
-  font-weight: 400;
+  font-weight: 600;
   text-shadow: 0 0 1px #d0cfcf; }
 
 b,
@@ -1068,7 +1068,7 @@ img {
   overflow: auto;
   font-weight: 400;
   background-color: #050505;
-  border-radius: 4px; }
+  border-radius: 0; }
   .highlight pre {
     margin: 0; }
 

@@ -25,6 +25,11 @@
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 600;
   src: url("/assets/raleway/raleway_thin-webfont.eot");
   src: url("/assets/raleway/raleway_thin-webfont.eot?#iefix") format("embedded-opentype"), local("Raleway Bold"), local("Raleway-700"), url("/assets/raleway/raleway_thin-webfont.woff") format("woff"), url("/assets/raleway/raleway_thin-webfont.ttf") format("truetype"); }
+@font-face {
+  font-family: 'Titlium';
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/titlium/TitliumWeb-Regular.ttf") format("truetype"), local("Titlium Bold"), local("Titlium-700"), url("fonts/titlium/TitliumWeb-Light.ttf") format("truetype"); }
