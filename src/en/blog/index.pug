@@ -1,0 +1,16 @@
+extends ../../../layout.pug
+
+block title 
+    title posts
+
+block content 
+    +header('adam/blog')
+
+    article.main 
+        - 
+            var articles = [ "2018/Liber-Verus-II.md"
+                           , "2018/Fish-can't-see-water.pug"
+                           , "2018/Ab-Omnibus-I.md" ]
+            const renderTitle = a => a.split('/')[1].slice(0,-3).split('-').join(' ')
+        each file in articles
+            a.post-title(href=file) #{renderTitle(file)}

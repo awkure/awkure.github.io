@@ -1,6 +1,9 @@
 !.keep
 *.DS_Store
 *.sass-cache
-/.asset-cache/*
-/_site/*
-/_assets/bower/*
+draft/
+*~
+node_modules
+yarn-error.log
+yarn.lock
+package-lock.json

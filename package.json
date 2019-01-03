@@ -1,0 +1,17 @@
+{
+  "name": "c",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/awkure/awkure.github.io",
+  "author": "awkure",
+  "license": "MIT",
+  "dependencies": {
+    "npm": "^6.5.0",
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "sass": "^1.15.2"
+  },
+  "scripts": {
+    "start": "node-sass ./styles -o ./ && pug ./"
+  }
+}

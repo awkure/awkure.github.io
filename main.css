@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'CaviarDreams';
+    /* src: url('/fonts/CaviarDreams.ttf'); */
+    src: url('https://suyu.neocities.org/CaviarDreams.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(rgba(255, 255, 255, .5), rgba(240, 240, 240, .5)), url(https://awkure.github.io/bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    height: 100vh !important;
+}
+
+a {
+    font-family: 'CaviarDreams';
+    color: black;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+nav .path {
+    align-items: center;
+}
+
+nav .p {
+    font-size: 1.3em;
+    min-width: initial;
+    border-bottom: 2px solid transparent;
+    margin: 5px;
+    padding: 7px 12px;
+    text-align: center;
+    transition: border .15s ease-out;
+}
+
+nav a:hover {
+    border-bottom: 2px solid black;
+}
+
+nav .language {
+    position: absolute;
+    height: 40px;
+    display: inline-block;
+    overflow: hidden;
+    transition: all .3s ease;
+    margin: 0 50px 10px 0;
+    vertical-align: top;
+    padding: 0;
+    right: 0;
+
+}
+
+nav .language:hover {
+    height: 100%;
+}
+
+nav .language a {
+    font-size: 1.1em;
+}
+
+nav .language li {
+    display: block;
+    padding: 0px 20px;
+    line-height: 50px;
+}
+
+.intro {
+    text-align: center;
+    font-size: 2em;
+    font-family: 'CaviarDreams';
+    position: relative;
+    pointer-events: none;
+    margin-top: 35vh;
+    padding: 0 15vw;
+    opacity: .7;
+}
+
+.divider {
+    height: 2px;
+    width: 40%;
+    opacity: .7777777;
+    margin: 20px auto 30px auto;
+    background: black;
+}
+
+.media {
+    text-align: center;
+}
+
+.media a {
+    font-family: 'CaviarDreams';
+    font-size: 1.5em;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    opacity: .7;
+    transition: opacity .2s ease-out;
+}
+
+.media a:hover {
+    opacity: .9;
+}
+
+@import '_code.scss';
+@import '_header.scss';
+@import '_intro.scss';
