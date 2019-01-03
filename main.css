@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'CaviarDreams';
     /* src: url('/fonts/CaviarDreams.ttf'); */
-    src: url('https://suyu.neocities.org/CaviarDreams.woff') format('woff');
+    src: url('https://awkure.github.io/fonts/CaviarDreams.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -114,6 +114,20 @@ nav .language li {
     opacity: .9;
 }
 
-@import '_code.scss';
-@import '_header.scss';
-@import '_intro.scss';
+::-moz-selection {
+    background: #777;
+}
+
+::selection {
+    background: #777;
+}
+
+@media (max-width: 600px) {
+    .language {
+        display: none;
+    }
+
+    .main {
+        margin-top: -14vh;
+    }
+}
