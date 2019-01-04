@@ -6,6 +6,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Komorebi';
+    src: url('https://awkure.github.io/fonts/komorebi-gothic.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -81,6 +88,17 @@ nav .language li {
     text-align: center;
     font-size: 2em;
     font-family: 'CaviarDreams';
+    position: relative;
+    pointer-events: none;
+    margin-top: 35vh;
+    padding: 0 15vw;
+    opacity: .7;
+}
+
+.intro_jp {
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Komorebi';
     position: relative;
     pointer-events: none;
     margin-top: 35vh;

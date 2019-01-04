@@ -14,6 +14,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Komorebi';
+    src: url('https://awkure.github.io/fonts/komorebi-gothic.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +34,7 @@ a {
 }
 
 main {
-    max-width: 200px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -74,7 +81,8 @@ nav .path {
 nav .p {
     font-size: 1.3em;
     min-width: initial;
-    border-bottom: 2px solid transparent;
+    /* border-bottom: 2px solid transparent; */
+    border: 2px solid black;
     margin: 5px;
     padding: 7px 12px;
     text-align: center;
@@ -87,7 +95,7 @@ nav a:hover {
 
 nav .language {
     position: absolute;
-    height: 40px;
+    height: 55px;
     display: inline-block;
     overflow: hidden;
     transition: all .3s ease;
@@ -95,11 +103,12 @@ nav .language {
     vertical-align: top;
     padding: 0;
     right: 0;
-
+    border: 2px solid black;
+    background: white;
 }
 
 nav .language:hover {
-    height: 80%;
+    height: 255px;
 }
 
 nav .language a {
