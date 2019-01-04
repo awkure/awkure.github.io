@@ -1,16 +1,28 @@
-extends ../../../layout.pug
+extends ../../../layouts/blog
+
+//- mixin posts(articles)
 
 block title 
     title posts
 
 block content 
-    +header('adam/blog')
-
-    article.main 
+    +header('root/blog', 'en')
+    .logo 
+        h1 Stream
+    main 
         - 
-            var articles = [ "2018/Liber-Verus-II.md"
-                           , "2018/Fish-can't-see-water.pug"
-                           , "2018/Ab-Omnibus-I.md" ]
-            const renderTitle = a => a.split('/')[1].slice(0,-3).split('-').join(' ')
-        each file in articles
-            a.post-title(href=file) #{renderTitle(file)}
+            const articles = [ [ "??????????????.html"       , 2018 ]
+                             , [ "Fish-can't-see-water.html" , 2018 ]
+                             , [ "Ab-Omnibus-I.html"         , 2018 ]
+                             , [ "Test asdf.html"            , 2017 ] 
+                             , [ "Test asdf.html"            , 2017 ] 
+                             , [ "Test asdf.html"            , 2017 ] 
+                             , [ "Test asdf.html"            , 2016 ] ]
+            const years = [...new Set(articles.reduce((acc, cur) => [...acc, cur[1]], []))]
+            const renderTitle = a => a.slice(0,-5).split('-').join(' ')
+        each year in years 
+            section 
+                h3 #{year}
+                p
+                    each file in articles.filter(x => x[1] === year)
+                        a(href=year + '/' + file[0]) #{renderTitle(file[0])}

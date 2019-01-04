@@ -1,0 +1,17 @@
+mixin header(path, lan)
+    - const s = path.split('/') //.slice(0,-1).concat('#')
+    - var d = ['en', 'ru', 'by', 'jp', 'la']
+    - const _ = d.splice(d.indexOf(lan),1)
+    - d.unshift(lan)
+    nav
+        if path 
+            .path
+                each r in s 
+                    if s.indexOf(r)+1 === s.length
+                        a.p(href='#') #{r}
+                    else 
+                        a.p(href=r) #{r}
+        ul.language 
+            each lan in d 
+                a(href='https://awkure.github.io/src/' + lan + '/index.html') 
+                    li #{lan}

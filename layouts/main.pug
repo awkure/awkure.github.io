@@ -1,0 +1,41 @@
+mixin header(path, lan)
+    - const s = path.split('/') //.slice(0,-1).concat('#')
+    - var d = ['en', 'ru', 'by', 'jp', 'la']
+    - const _ = d.splice(d.indexOf(lan),1)
+    - d.unshift(lan)
+    nav
+        if path 
+            .path
+                each r in s 
+                    if s.indexOf(r)+1 === s.length
+                        a.p(href='#') #{r}
+                    else 
+                        a.p(href=r) #{r}
+        ul.language 
+            each lan in d 
+                a(href='https://awkure.github.io/src/' + lan + '/index.html') 
+                    li #{lan}
+
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='x-ua-compatible'   content='ie=edge')
+        meta(name='viewport'                content='width=device-width, initial-scale=1')
+        meta(name='author'                  content='adam')
+        meta(name='twitter:site'            content='@awkure')
+        meta(name='twitter:creator'         content='@awkure')
+        meta(name='twitter:image'           content='https://awkure.github.io/bg.jpg')
+        meta(property='og:title'            content='アダム')
+        meta(name='og:image'                content='https://awkure.github.io/bg.jpg')
+        meta(property='og:type'             content='website')
+        meta(property='og:url'              content='https://awkure.github.io')
+        meta(name='viewpowrt'               content='width=device-width, initial-scale=1')
+        //- link(rel='stylesheet' href='https://awkure.github.io/main.css?v=10')
+        link(rel='stylesheet' href='/home/adam/work/blog/awkure.github.io/styles/main.css')
+        block title
+            title default
+
+    body.content
+        block vars
+        block content

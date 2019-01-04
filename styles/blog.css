@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'CaviarDreams';
+    /* src: url('/fonts/CaviarDreams.ttf'); */
+    src: url('https://awkure.github.io/fonts/CaviarDreams.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    /* src: url('/fonts/Raleway-Light.ttf'); */
+    src: url('https://awkure.github.io/fonts/Raleway-Light.ttf');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    font-family: 'Raleway';
+    color: black;
+    text-decoration: none;
+}
+
+main {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+main h3 {
+    font-family: 'CaviarDreams';
+    font-weight: lighter;
+    font-size: 3em;
+    margin: 20px;
+    border-left: 2px solid black;
+    max-width: 850px;
+    padding-left: 20px;
+}
+
+main p {
+    margin: 20px;
+    max-width: 850px;
+    line-height: 1.5;
+}
+
+main a {
+    border-left: 2px solid transparent;
+    padding-left: 10px;
+    transition: border-left .2s ease;
+    display: block;
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+main a:hover {
+    border-left: 2px solid black;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+nav .path {
+    align-items: center;
+}
+
+nav .p {
+    font-size: 1.3em;
+    min-width: initial;
+    border-bottom: 2px solid transparent;
+    margin: 5px;
+    padding: 7px 12px;
+    text-align: center;
+    transition: border .15s ease-out;
+}
+
+nav a:hover {
+    border-bottom: 2px solid black;
+}
+
+nav .language {
+    position: absolute;
+    height: 40px;
+    display: inline-block;
+    overflow: hidden;
+    transition: all .3s ease;
+    margin: 0 50px 10px 0;
+    vertical-align: top;
+    padding: 0;
+    right: 0;
+
+}
+
+nav .language:hover {
+    height: 80%;
+}
+
+nav .language a {
+    font-size: 1.1em;
+}
+
+nav .language li {
+    display: block;
+    padding: 0px 20px;
+    line-height: 50px;
+}
+
+.logo {
+    /* text-align: center; */
+    /* margin: 20vh 20vw; */
+    margin: 200px auto;
+    /* max-width: 250px; */
+    max-width: calc(16em + 22px);
+}
+
+.logo h1 {
+    font-family: 'Raleway';
+    font-weight: lighter;
+    color: black;
+    font-size: 5em;
+    border-left: 2px solid black;
+    padding-left: 20px;
+} 
+
+.divider {
+    height: 2px;
+    width: 40%;
+    opacity: .7777777;
+    margin: 20px auto 30px auto;
+    background: black;
+}
+
+.media {
+    text-align: center;
+}
+
+::-moz-selection {
+    background: #777;
+}
+
+::selection {
+    background: #777;
+}
+
+@media (max-width: 600px) {
+    .main {
+        margin-top: -14vh;
+    }
+
+    .language {
+        right: auto;
+    }
+}

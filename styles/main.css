@@ -29,7 +29,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 10px 0;
+    margin: 30px 0;
 }
 
 nav .path {
@@ -123,11 +123,11 @@ nav .language li {
 }
 
 @media (max-width: 600px) {
-    .language {
-        display: none;
-    }
-
     .main {
         margin-top: -14vh;
+    }
+
+    .language {
+        right: auto !important;
     }
 }
