@@ -1,12 +1,13 @@
 mixin header(path, lan)
-    - const s = path.split('/').shift() //.slice(0,-1).concat('#')
+    - const s = path.split('/')
+    - s.shift()
     - var d = ['en', 'ru', 'by', 'jp', 'la']
     - const _ = d.splice(d.indexOf(lan),1)
     - d.unshift(lan)
     nav
         if path 
             .path
-                a.p(href='../../') root
+                a.p(href='../index.html') root
                 each r in s 
                     if s.indexOf(r)+1 === s.length
                         a.p(href='#') #{r}
@@ -14,7 +15,7 @@ mixin header(path, lan)
                         a.p(href=r) #{r}
         ul.language 
             each lan in d 
-                a(href='https://awkure.github.io/src/' + lan + '/index.html') 
+                a(href='https://awkure.github.io/src/' + lan + '/' + s.join() + '/index.html') 
                     li #{lan}
 
 doctype html

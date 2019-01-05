@@ -3,15 +3,15 @@ extends ../../../layouts/blog
 //- mixin posts(articles)
 
 block title 
-    title adam | Blog
+    title アダム | 記事
 
 block content 
-    +header('root/blog', 'en')
+    +header('根/流れ', 'jp')
     .logo 
-        h1 Stream
+        h1 流れ
     main 
         - 
-            const articles = [ [ "Fish-can't-see-water.html" , 2018 ] ]
+            const articles = [ [ '超宗教.html', '二千十九' ] ]
             const years = [...new Set(articles.reduce((acc, cur) => [...acc, cur[1]], []))]
             const renderTitle = a => a.slice(0,-5).split('-').join(' ')
         each year in years 

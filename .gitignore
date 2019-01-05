@@ -8,3 +8,4 @@ yarn-error.log
 yarn.lock
 package-lock.json
 layouts/*.html
+src/en/blog/2019/*
