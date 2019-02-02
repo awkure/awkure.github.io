@@ -32,11 +32,33 @@ html
         meta(name='og:image'                content='https://awkure.github.io/bg.jpg')
         meta(property='og:type'             content='website')
         meta(property='og:url'              content='https://awkure.github.io')
-        meta(name='viewpowrt'               content='width=device-width, initial-scale=1')
         link(rel='stylesheet' href='https://awkure.github.io/styles/blog.css')
         //- link(rel='stylesheet' href='/home/adam/work/blog/awkure.github.io/styles/blog.css')
         block title
             title default
+
+        script(src='https://awkure.github.io/styles/mj.js?config=TeX-AMS_HTML')
+        script.
+            window.MathJax = { jax: ["input/TeX", "input/MathML", "input/AsciiMath", "output/CommonHTML", "output/NativeMML"],
+                                    TeX: { extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"] },
+                                    extensions: ["tex2jax.js", "asciimath2jax.js", "mml2jax.js", "MathMenu.js", "MathZoom.js"],
+                                    "HTML-CSS": { imageFont: null },
+                                    AuthorInit: function() {
+                                        MathJax.Hub.Register.StartupHook("TeX AMSmath Ready", function() {
+                                            var TEX = MathJax.InputJax.TeX;
+                                            TEX.Definitions.Add({
+                                                macros: {
+                                                llparenthesis: ['Macro', '\\mathopen{\u2987}'],
+                                                rrparenthesis: ['Macro', '\\mathclose{\u2988}'],
+                                                llbracket:     ['Macro', '\\mathopen{\u27E6}'],
+                                                rrbracket:     ['Macro', '\\mathclose{\u27E7}'],
+                                                }
+                                            });
+                                        });
+                                    },
+                                    tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']],
+                                                processEscapes: true }
+                                    };
 
     body.content
         block vars

@@ -1,17 +1,18 @@
-extends ../../../layouts/blog
+extends ../layouts/blog
 
 //- mixin posts(articles)
 
 block title 
-    title アダム | 記事
+    title Stream
 
 block content 
-    +header('根/流れ', 'jp')
+    //- +blog_header('root/blog')
+    +header('root/blog', 'en')
     .logo 
-        h1 流れ
+        h1 Stream
     main 
         - 
-            const articles = [ [ '超宗教.html', '二千十九' ] ]
+            const articles = [ [ "Fish-can't-see-water.html" , 2018 ] ]
             const years = [...new Set(articles.reduce((acc, cur) => [...acc, cur[1]], []))]
             const renderTitle = a => a.slice(0,-5).split('-').join(' ')
         each year in years 

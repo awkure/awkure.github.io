@@ -181,12 +181,12 @@ nav .language li {
     background: #777;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .main {
         margin-top: -14vh;
     }
 
-    .language {
-        right: auto;
+    .title {
+        margin-top: 40px;
     }
 }

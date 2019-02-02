@@ -1,7 +1,7 @@
-extends ../../../../layouts/post
+extends ../../layouts/post
 
 block title 
-    title adam | Blog | Fish can't see water 
+    title Fish can't see water 
 
 block content
     +header('root/blog/Fish can\'t see water')
