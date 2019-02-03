@@ -13,10 +13,6 @@ mixin header(path, lan)
                         a.p(href='#') #{r}
                     else 
                         a.p(href=r) #{r}
-        ul.language 
-            each lan in d 
-                a(href='https://awkure.github.io/src/' + lan + '/' + s.join() + '/index.html') 
-                    li #{lan}
 
 doctype html
 html
