@@ -24,6 +24,10 @@ body {
     background-size: cover;
     overflow: hidden;
     height: 100vh !important;
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    text-rendering: optimizeLegibility; 
+    -moz-font-feature-settings: "liga" on; 
 }
 
 a {
