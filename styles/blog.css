@@ -173,6 +173,20 @@ nav .language li {
     background: black;
 }
 
+code {
+    box-sizing: border-box;
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    text-align: left;
+    font-size: 18px;
+    background: white;
+    box-shadow: 0 1px 4px #f1f0f0, inset 0 0 0 1px #e7e6e5;
+    white-space: pre;
+}
+
 .media {
     text-align: center;
 }
@@ -188,6 +202,10 @@ nav .language li {
 @media screen and (max-width: 600px) {
     .main {
         margin-top: -14vh;
+    }
+
+    .title h1 {
+        font-size: 2em;
     }
 
     .title {
