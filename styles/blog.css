@@ -173,6 +173,12 @@ nav .language li {
     background: black;
 }
 
+img.post {
+    display: block;
+    margin: 0 20px;
+    width: 100%;
+}
+
 code {
     box-sizing: border-box;
     display: block;
@@ -210,5 +216,14 @@ code {
 
     .title {
         margin-top: 40px;
+    }
+
+    main h3 {
+        margin: 0;
+        font-size: 2em;
+    }
+
+    img.post {
+        margin: 0 auto;
     }
 }

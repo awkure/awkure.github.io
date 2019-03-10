@@ -9,9 +9,10 @@ block content
         h1 Stream
     main 
         - 
-            const articles = [ [ "Сасуд.html"                                      , 2019 ]
-                             , [ "Отступ-в-Формальную-Философию.html"              , 2018 ] 
-                             , [ "Fish-can't-see-water.html"                       , 2018 ] ]
+            const articles = [ [ "Спектральный-анализ-психофизического-расслоения.html" , 2019 ]
+                             , [ "Сасуд.html"                                          , 2019 ]
+                             , [ "Отступ-в-Формальную-Философию.html"                  , 2018 ] 
+                             , [ "Fish-can't-see-water.html"                           , 2018 ] ]
                              
             const years = [...new Set(articles.reduce((acc, cur) => [...acc, cur[1]], []))]
             const renderTitle = a => a.slice(0,-5).split('-').join(' ')
