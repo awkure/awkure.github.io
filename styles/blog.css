@@ -226,4 +226,13 @@ code {
     img.post {
         margin: 0 auto;
     }
+
+    .logo {
+        margin: 20px auto;
+        font-size: .75em;
+    }
+
+    main a {
+        margin: 10px auto;
+    }
 }
